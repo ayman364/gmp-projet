@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMP - L'excellence du service | Construction & Rénovation</title>
+  <meta name="description" content="GMP - Entreprise spécialisée dans tous les travaux de construction, rénovation et décoration. Devis gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #e0e0e0;
+      background: #0a0a0a;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== LOADER ===== */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(30, 136, 229, 0.1);
+      border-top-color: #1e88e5;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== NAV ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(30, 136, 229, 0.1);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #1e88e5;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .nav-logo span {
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #1e88e5;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #1e88e5;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: #1e88e5;
+      color: #0a0a0a !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700 !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-cta:hover {
+      background: #42a5f5 !important;
+      color: #0a0a0a !important;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: linear-gradient(160deg, #050505 0%, #111 40%, #0a0a0a 100%);
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 150%;
+      background: radial-gradient(circle at 50% 50%, rgba(30, 136, 229, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(30, 136, 229, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 136, 229, 0.1);
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #1e88e5;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .blue {
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #1e88e5;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: #999;
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      color: #0a0a0a;
+      box-shadow: 0 4px 25px rgba(30, 136, 229, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(30, 136, 229, 0.4);
+    }
+
+    .btn-outline {
+      border: 2px solid #1e88e5;
+      color: #1e88e5;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(30, 136, 229, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(30, 136, 229, 0.15);
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(28, 28, 28, 0.8));
+      border: 1px solid rgba(30, 136, 229, 0.15);
+      border-radius: 24px;
+      padding: 40px;
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card-logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #111, #222);
+      border: 2px solid #1e88e5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #1e88e5;
+      box-shadow: 0 0 40px rgba(30, 136, 229, 0.15);
+    }
+
+    .hero-card-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .hero-stat {
+      text-align: center;
+      padding: 16px 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-stat .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1e88e5;
+      line-height: 1;
+    }
+
+    .hero-stat .label {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ===== BANDE CLIENTS ===== */
+    .clients-band {
+      background: #050505;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 40px 0;
+      overflow: hidden;
+    }
+
+    .clients-band-title {
+      text-align: center;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #555;
+      margin-bottom: 24px;
+    }
+
+    .clients-track {
+      display: flex;
+      gap: 60px;
+      animation: scroll-left 30s linear infinite;
+      width: max-content;
+    }
+
+    .clients-track span {
+      font-size: 1.1rem;
+      color: #444;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-dark {
+      background: linear-gradient(180deg, #0d0d0d, #111, #0d0d0d);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #1e88e5;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-title .blue {
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .section-desc {
+      color: #888;
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #1e88e5, #42a5f5);
+      margin: 16px auto 0;
+      border-radius: 3px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      color: #1e88e5;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      color: #999;
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    .about-feature .check {
+      width: 28px;
+      height: 28px;
+      background: rgba(30, 136, 229, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e88e5;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image-placeholder {
+      background: linear-gradient(145deg, #141414, #1c1c1c);
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 60px 40px;
+      text-align: center;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-image-placeholder .big-icon {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+
+    .about-image-placeholder p {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .about-exp-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      color: #0a0a0a;
+      padding: 20px 28px;
+      border-radius: 16px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 2rem;
+      line-height: 1;
+      box-shadow: 0 10px 40px rgba(30, 136, 229, 0.3);
+    }
+
+    .about-exp-badge small {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: linear-gradient(145deg, #141414, #1c1c1c);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      border: 1px solid #242424;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #1e88e5, transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      border-color: rgba(30, 136, 229, 0.3);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: rgba(30, 136, 229, 0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      background: rgba(30, 136, 229, 0.15);
+      transform: scale(1.1);
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      color: #1e88e5;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .service-card p {
+      font-size: 0.88rem;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ===== PROCESS ===== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      counter-reset: step;
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '';
+      position: absolute;
+      top: 32px;
+      right: -16px;
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #1e88e5, transparent);
+    }
+
+    .process-step:last-child::after {
+      display: none;
+    }
+
+    .process-num {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, rgba(30, 136, 229, 0.12), rgba(30, 136, 229, 0.05));
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1e88e5;
+    }
+
+    .process-step h4 {
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .process-step p {
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    /* ===== STATS ===== */
+    .stats-section {
+      background: linear-gradient(160deg, #050505, #0d0d0d);
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      padding: 80px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item .num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #1e88e5, #42a5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .stat-item .suffix {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e88e5;
+    }
+
+    .stat-item p {
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== GALERIE ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #242424;
+      transition: all 0.5s ease;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px);
+      border-color: rgba(30, 136, 229, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+      padding: 40px 20px 18px;
+      text-align: center;
+      transform: translateY(10px);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h3 {
+      color: #1e88e5;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .gallery-overlay p {
+      color: #bbb;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    /* ===== TEMOIGNAGES ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: linear-gradient(145deg, #141414, #1c1c1c);
+      border: 1px solid #242424;
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: all 0.4s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(30, 136, 229, 0.2);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-stars {
+      color: #1e88e5;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-card blockquote {
+      color: #bbb;
+      font-size: 0.95rem;
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(30, 136, 229, 0.2), rgba(30, 136, 229, 0.05));
+      border: 1px solid rgba(30, 136, 229, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #1e88e5;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .testimonial-author strong {
+      color: #fff;
+      font-size: 0.9rem;
+      display: block;
+    }
+
+    .testimonial-author span {
+      color: #888;
+      font-size: 0.75rem;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-section {
+      background: linear-gradient(160deg, #050505 0%, #0d0d0d 100%);
+      padding: 100px 0;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      text-align: center;
+    }
+
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto 48px;
+    }
+
+    .contact-info-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid #242424;
+      border-radius: 16px;
+      padding: 28px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info-item:hover {
+      border-color: rgba(30, 136, 229, 0.2);
+    }
+
+    .contact-info-item .icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .contact-info-item h4 {
+      color: #1e88e5;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .contact-info-item p {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .contact-info-item a {
+      color: #1e88e5;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info-item a:hover {
+      color: #42a5f5;
+    }
+
+    .links-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 18px 44px;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      min-width: 220px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .link-btn.facebook {
+      background: #1877F2;
+      color: white;
+      box-shadow: 0 4px 20px rgba(24, 119, 242, 0.3);
+    }
+
+    .link-btn.facebook:hover {
+      box-shadow: 0 12px 40px rgba(24, 119, 242, 0.5);
+    }
+
+    .link-btn.whatsapp {
+      background: #25D366;
+      color: white;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .link-btn.whatsapp:hover {
+      box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    .link-btn.email {
+      background: #ea4335;
+      color: white;
+      box-shadow: 0 4px 20px rgba(234, 67, 53, 0.3);
+    }
+
+    .link-btn.email:hover {
+      box-shadow: 0 12px 40px rgba(234, 67, 53, 0.5);
+    }
+
+    /* ===== CTA BAND ===== */
+    .cta-band {
+      background: linear-gradient(135deg, rgba(30, 136, 229, 0.05), rgba(30, 136, 229, 0.02));
+      border-top: 1px solid rgba(30, 136, 229, 0.1);
+      border-bottom: 1px solid rgba(30, 136, 229, 0.1);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-band h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta-band p {
+      color: #999;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #050505;
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #1e88e5;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand span {
+      color: #fff;
+    }
+
+    .footer-about p {
+      color: #666;
+      font-size: 0.9rem;
+      max-width: 320px;
+    }
+
+    .footer h4 {
+      color: #1e88e5;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer ul a {
+      color: #666;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer ul a:hover {
+      color: #1e88e5;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1a1a1a;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    .footer-bottom .footer-brand-inline {
+      color: #1e88e5;
+      font-weight: 700;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      border-color: #1e88e5;
+      color: #1e88e5;
+      transform: translateY(-3px);
+    }
+
+    /* ===== SCROLL TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #1e88e5;
+      color: #0a0a0a;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(30, 136, 229, 0.3);
+      z-index: 999;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(30, 136, 229, 0.5);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 968px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero .subtitle {
+        margin: 0 auto 40px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .process-step::after {
+        display: none;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .contact-info-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+
+      .footer-about p {
+        margin: 0 auto;
+      }
+
+      .hero-card {
+        max-width: 360px;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .about-exp-badge {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(30, 136, 229, 0.1);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero { padding-top: 70px; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .tagline { font-size: 0.85rem; letter-spacing: 3px; }
+      .section { padding: 60px 0; }
+      .section-title { font-size: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .stat-item .num { font-size: 2rem; }
+      .link-btn { width: 100%; min-width: unset; padding: 16px 30px; }
+      .hero-card { padding: 28px 20px; }
+      .hero-card-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hero-stat .num { font-size: 1.4rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-band h2 { font-size: 1.6rem; }
+      .contact-info-grid { max-width: 100%; }
+      .about-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">GMP<span>.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div class="container" style="width:100%;">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-top">&#9733; 10+ ans d'expertise</div>
+          <p class="tagline">L'excellence du service</p>
+          <h1>Construisons<br>vos <span class="blue">projets</span></h1>
+          <p class="subtitle">
+            Entreprise spécialisée dans tous les travaux de construction, rénovation et décoration intérieure &amp; extérieure
+          </p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">Demander un devis</a>
+            <a href="#realisations" class="btn btn-outline">Nos réalisations</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-logo">GMP</div>
+            <p style="text-align:center;color:#888;font-size:0.9rem;">
+              Entreprise agr&eacute;&eacute;e<br>et certifi&eacute;e
+            </p>
+            <div class="hero-card-stats">
+              <div class="hero-stat">
+                <div class="num">150+</div>
+                <div class="label">Projets</div>
+              </div>
+              <div class="hero-stat">
+                <div class="num">50+</div>
+                <div class="label">Clients</div>
+              </div>
+              <div class="hero-stat">
+                <div class="num">98%</div>
+                <div class="label">Satisfaction</div>
+              </div>
+              <div class="hero-stat">
+                <div class="num">10</div>
+                <div class="label">Ans d'exp</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANDE CLIENTS -->
+  <section class="clients-band">
+    <div class="container">
+      <p class="clients-band-title">Ils nous ont fait confiance</p>
+      <div class="clients-track">
+        <span>Promogim</span>
+        <span>Nedjma</span>
+        <span>Sonatrach</span>
+        <span>Air Algérie</span>
+        <span>Mobilis</span>
+        <span>Algerian Qatar Steel</span>
+        <span>Cosider</span>
+        <span>Biopharm</span>
+        <span>Promogim</span>
+        <span>Nedjma</span>
+        <span>Sonatrach</span>
+        <span>Air Algérie</span>
+        <span>Mobilis</span>
+        <span>Algerian Qatar Steel</span>
+        <span>Cosider</span>
+        <span>Biopharm</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- A PROPOS -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-tag">À propos</span>
+          <h3>Leader dans la construction <br>et la r&eacute;novation</h3>
+          <p>
+            <strong style="color:#1e88e5;">GMP (Group Main Pro)</strong> est une entreprise passionn&eacute;e par l'art de b&acirc;tir et d'embellir. Depuis plus de 10 ans, nous mettons notre expertise et notre savoir-faire au service de vos projets.
+          </p>
+          <p>
+            Avec une &eacute;quipe de professionnels qualifi&eacute;s et un engagement fort envers la qualit&eacute;, les d&eacute;lais et la satisfaction client, nous r&eacute;alisons des travaux qui allient esth&eacute;tique et fonctionnalit&eacute;.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="check">&#10003;</span>
+              Équipe certifiée
+            </div>
+            <div class="about-feature">
+              <span class="check">&#10003;</span>
+              Devis gratuit
+            </div>
+            <div class="about-feature">
+              <span class="check">&#10003;</span>
+              Matériaux de qualité
+            </div>
+            <div class="about-feature">
+              <span class="check">&#10003;</span>
+              Respect des délais
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <div class="about-image-placeholder">
+            <div class="big-icon">&#127963;</div>
+            <p>Photos de l'équipe et projets</p>
+          </div>
+          <div class="about-exp-badge">
+            10+
+            <small>Années d'expérience</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="num">150</div><span class="suffix">+</span>
+          <p>Projets r&eacute;alis&eacute;s</p>
+        </div>
+        <div class="stat-item">
+          <div class="num">10</div><span class="suffix">+</span>
+          <p>Ann&eacute;es d'exp&eacute;rience</p>
+        </div>
+        <div class="stat-item">
+          <div class="num">50</div><span class="suffix">+</span>
+          <p>Clients satisfaits</p>
+        </div>
+        <div class="stat-item">
+          <div class="num">98</div><span class="suffix">%</span>
+          <p>Taux de satisfaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-dark" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Notre expertise</span>
+        <h2 class="section-title">Nos <span class="blue">services</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#127912;</div>
+          <h3>Peinture int&eacute;rieure &amp; ext&eacute;rieure</h3>
+          <p>Peinture d&eacute;corative et industrielle pour tous types de surfaces avec des finitions impeccables</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#127960;</div>
+          <h3>D&eacute;coration int&eacute;rieure &amp; ext&eacute;rieure</h3>
+          <p>Conception et r&eacute;alisation d'espaces esth&eacute;tiques et fonctionnels sur mesure</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#128736;</div>
+          <h3>Mobilier en bois</h3>
+          <p>Fabrication sur mesure de meubles en bois massif et agglom&eacute;r&eacute;
+
+</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#129484;</div>
+          <h3>Travail en hauteur</h3>
+          <p>Intervention en hauteur avec &eacute;quipements certifi&eacute;s et s&eacute;curit&eacute; maximale</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Notre méthode</span>
+        <h2 class="section-title">Comment <span class="blue">nous travaillons</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <h4>Consultation</h4>
+          <p>Échange sur vos besoins, visite du site et analyse du projet</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <h4>Devis &amp; Planification</h4>
+          <p>Proposition d&eacute;taill&eacute;e avec devis transparent et planning</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <h4>Réalisation</h4>
+          <p>Exécution professionnelle avec suivi rigoureux jusqu'&agrave; la livraison</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="section section-dark" id="realisations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Portfolio</span>
+        <h2 class="section-title">Nos <span class="blue">r&eacute;alisations</span></h2>
+        <p class="section-desc">Quelques exemples de nos travaux r&eacute;cents</p>
+        <div class="section-divider"></div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80" alt="Peinture intérieure" loading="lazy">
+          <div class="gallery-overlay">
+            <h3>Peinture</h3>
+            <p>Int&eacute;rieure &amp; ext&eacute;rieure</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80" alt="Décoration intérieure" loading="lazy">
+          <div class="gallery-overlay">
+            <h3>D&eacute;coration</h3>
+            <p>Int&eacute;rieure &amp; ext&eacute;rieure</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=600&q=80" alt="Mobilier en bois" loading="lazy">
+          <div class="gallery-overlay">
+            <h3>Mobilier</h3>
+            <p>Fabrication bois sur mesure</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Travaux en hauteur" loading="lazy">
+          <div class="gallery-overlay">
+            <h3>Travail en hauteur</h3>
+            <p>S&eacute;curit&eacute; &amp; expertise</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">T&eacute;moignages</span>
+        <h2 class="section-title">Ce que disent <span class="blue">nos clients</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <blockquote>"Un travail exceptionnel ! L'&eacute;quipe a su comprendre nos besoins et le r&eacute;sultat a d&eacute;pass&eacute; nos attentes."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AM</div>
+            <div>
+              <strong>Ahmed M.</strong>
+              <span>Projet villa, Alger</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <blockquote>"Professionnalisme et ponctualit&eacute;. La r&eacute;novation de notre bureau a &eacute;t&eacute; livr&eacute;e dans les temps."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SL</div>
+            <div>
+              <strong>Société Logistique</strong>
+              <span>Rénovation bureau</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <blockquote>"Très satisfait du travail sur notre appartement. Je recommande GMP &agrave; tous mes proches."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">FK</div>
+            <div>
+              <strong>Farid K.</strong>
+              <span>Appartement, Oran</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band">
+    <div class="container">
+      <h2>Pr&ecirc;t &agrave; concr&eacute;tiser votre projet ?</h2>
+      <p>Contactez-nous d&egrave;s maintenant pour un devis gratuit et personnalis&eacute;</p>
+      <a href="#contact" class="btn btn-primary">Obtenir un devis</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Contact</span>
+        <h2 class="section-title">Restons <span class="blue">en contact</span></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-info-grid">
+        <div class="contact-info-item">
+          <span class="icon">&#128222;</span>
+          <h4>T&eacute;l&eacute;phone</h4>
+          <p><a href="tel:+213770245237">+213 770 24 52 37</a></p>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">&#9993;</span>
+          <h4>Email</h4>
+          <p><a href="mailto:contact@gmp-dz.com">contact@gmp-dz.com</a></p>
+        </div>
+        <div class="contact-info-item">
+          <span class="icon">&#128205;</span>
+          <h4>Localisation</h4>
+          <p>Algérie</p>
+        </div>
+      </div>
+      <div class="links-grid">
+        <a href="https://www.facebook.com/profile.php?id=61584531894095" target="_blank" rel="noopener" class="link-btn facebook">
+          &#120143; Facebook
+        </a>
+        <a href="https://wa.me/213770245237" target="_blank" rel="noopener" class="link-btn whatsapp">
+          &#128172; WhatsApp
+        </a>
+        <a href="mailto:contact@gmp-dz.com" class="link-btn email">
+          &#9993; Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-brand">GMP<span>.</span></div>
+          <p>Group Main Pro — Entreprise sp&eacute;cialis&eacute;e dans la construction, la r&eacute;novation et la d&eacute;coration. Devis gratuit.</p>
+        </div>
+        <div>
+          <h4>Liens</h4>
+          <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+213770245237">+213 770 24 52 37</a></li>
+            <li><a href="mailto:contact@gmp-dz.com">contact@gmp-dz.com</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61584531894095" target="_blank">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 <span class="footer-brand-inline">GMP</span> &mdash; Group Main Pro. Tous droits r&eacute;serv&eacute;s.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61584531894095" target="_blank" rel="noopener" aria-label="Facebook">&#120143;</a>
+          <a href="https://wa.me/213770245237" target="_blank" rel="noopener" aria-label="WhatsApp">&#128172;</a>
+          <a href="mailto:contact@gmp-dz.com" aria-label="Email">&#9993;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCROLL TOP -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">&#8593;</button>
+
+  <script>
+    // ===== LOADER =====
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hidden');
+    });
+
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== MOBILE NAV =====
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ===== SCROLL TOP =====
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== SMOOTH SCROLL for anchor links =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: pos, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
