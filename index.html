@@ -546,68 +546,77 @@
     }
 
     .service-card {
-      background: linear-gradient(145deg, #141414, #1c1c1c);
       border-radius: 20px;
-      padding: 40px 28px;
+      padding: 0;
       text-align: center;
       border: 1px solid #242424;
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       position: relative;
       overflow: hidden;
       cursor: default;
+      min-height: 340px;
+      display: flex;
+      align-items: flex-end;
     }
 
-    .service-card::before {
-      content: '';
+    .service-card-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #1e88e5, transparent);
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .service-card:hover .service-card-bg {
+      transform: scale(1.08);
+    }
+
+    .service-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%);
     }
 
     .service-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-      border-color: rgba(30, 136, 229, 0.3);
+      border-color: rgba(30, 136, 229, 0.4);
     }
 
-    .service-card:hover::before {
-      opacity: 1;
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 30px 24px;
+      width: 100%;
+      text-align: left;
     }
 
-    .service-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 20px;
-      background: rgba(30, 136, 229, 0.08);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      transition: all 0.4s ease;
-    }
-
-    .service-card:hover .service-icon {
-      background: rgba(30, 136, 229, 0.15);
-      transform: scale(1.1);
-    }
-
-    .service-card h3 {
-      font-size: 1.1rem;
-      color: #1e88e5;
-      margin-bottom: 12px;
+    .service-card-content h3 {
+      font-size: 1.15rem;
+      color: #42a5f5;
+      margin-bottom: 6px;
       font-weight: 700;
     }
 
-    .service-card p {
-      font-size: 0.88rem;
-      color: #888;
+    .service-card-content p {
+      font-size: 0.85rem;
+      color: #ccc;
       line-height: 1.6;
+      margin: 0;
+    }
+
+    .service-tag {
+      display: inline-block;
+      background: rgba(30, 136, 229, 0.2);
+      border: 1px solid rgba(30, 136, 229, 0.3);
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      color: #42a5f5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
     /* ===== PROCESS ===== */
@@ -1392,26 +1401,40 @@
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon">&#127912;</div>
-          <h3>Peinture int&eacute;rieure &amp; ext&eacute;rieure</h3>
-          <p>Peinture d&eacute;corative et industrielle pour tous types de surfaces avec des finitions impeccables</p>
+          <div class="service-card-bg" style="background-image:url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=85')"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-tag">Peinture</span>
+            <h3>Int&eacute;rieure &amp; ext&eacute;rieure</h3>
+            <p>Peinture d&eacute;corative et industrielle pour tous types de surfaces</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon">&#127960;</div>
-          <h3>D&eacute;coration int&eacute;rieure &amp; ext&eacute;rieure</h3>
-          <p>Conception et r&eacute;alisation d'espaces esth&eacute;tiques et fonctionnels sur mesure</p>
+          <div class="service-card-bg" style="background-image:url('https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=85')"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-tag">D&eacute;coration</span>
+            <h3>Int&eacute;rieure &amp; ext&eacute;rieure</h3>
+            <p>Conception et r&eacute;alisation d'espaces esth&eacute;tiques et fonctionnels</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon">&#128736;</div>
-          <h3>Mobilier en bois</h3>
-          <p>Fabrication sur mesure de meubles en bois massif et agglom&eacute;r&eacute;
-
-</p>
+          <div class="service-card-bg" style="background-image:url('https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=600&q=85')"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-tag">Mobilier</span>
+            <h3>Fabrication bois sur mesure</h3>
+            <p>Meubles en bois massif et agglom&eacute;r&eacute; con&ccedil;us par nos artisans</p>
+          </div>
         </div>
         <div class="service-card">
-          <div class="service-icon">&#129484;</div>
-          <h3>Travail en hauteur</h3>
-          <p>Intervention en hauteur avec &eacute;quipements certifi&eacute;s et s&eacute;curit&eacute; maximale</p>
+          <div class="service-card-bg" style="background-image:url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=85')"></div>
+          <div class="service-card-overlay"></div>
+          <div class="service-card-content">
+            <span class="service-tag">Travail en hauteur</span>
+            <h3>S&eacute;curit&eacute; &amp; expertise</h3>
+            <p>&Eacute;quipements certifi&eacute;s pour interventions en hauteur</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1459,28 +1482,28 @@
           <img src="https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=600&q=85" alt="Peinture intérieure" loading="lazy">
           <div class="gallery-overlay">
             <h3>Peinture</h3>
-            <p>Int&eacute;rieure &amp; ext&eacute;rieure</p>
+            <p>R&eacute;novation compl&egrave;te d'appartement</p>
           </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=85" alt="Décoration intérieure" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1618219904412-f4d86f58e60a?w=600&q=85" alt="Rénovation salle de bain" loading="lazy">
           <div class="gallery-overlay">
-            <h3>D&eacute;coration</h3>
-            <p>Int&eacute;rieure &amp; ext&eacute;rieure</p>
+            <h3>Salle de bain</h3>
+            <p>R&eacute;novation &amp; design moderne</p>
           </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=600&q=85" alt="Mobilier en bois" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=85" alt="Rénovation cuisine" loading="lazy">
           <div class="gallery-overlay">
-            <h3>Mobilier</h3>
-            <p>Fabrication bois sur mesure</p>
+            <h3>Cuisine</h3>
+            <p>Agencement sur mesure</p>
           </div>
         </div>
         <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=85" alt="Travaux en hauteur" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=85" alt="Chantier construction" loading="lazy">
           <div class="gallery-overlay">
-            <h3>Travail en hauteur</h3>
-            <p>S&eacute;curit&eacute; &amp; expertise</p>
+            <h3>Construction</h3>
+            <p>Projets neufs &amp; extension</p>
           </div>
         </div>
       </div>
